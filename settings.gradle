@@ -1,0 +1,3 @@
+rootProject.name = "Users GitHub Core Demo App"
+include ':app'
+include ':core'
