@@ -1,0 +1,59 @@
+/* ------------------------ */
+/* > Publish to Artifactory
+/* ------------------------ */
+
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'maven-publish'
+
+def libraryGroupId = "com.amarturelo.usersgithub.android"
+def libraryArtifactId = "core"
+def currentVersion = "1.0.0"
+
+publishing {
+    publications {
+        android.buildTypes.all { variant ->
+            "${variant.name}Aar"(MavenPublication) {
+                groupId = libraryGroupId
+                artifactId = libraryArtifactId
+                version = currentVersion
+                // Tell maven to prepare the generated "*.aar" file for publishing
+                artifact("$buildDir/outputs/aar/${project.getName()}-${variant.name}.aar"){
+                    classifier variant.name
+                    extension "aar"
+                }
+            }
+        }
+    }
+}
+
+artifactoryPublish {
+    android.buildTypes.all{variant->
+        publications("${variant.name}Aar")
+    }
+}
+
+artifactory {
+    contextUrl = "https://amarturelo.jfrog.io/artifactory"
+
+    clientConfig.setIncludeEnvVars(true)
+    clientConfig.info.addEnvironmentProperty('test.adding.dynVar', new Date().toString())
+
+    contextUrl = "https://amarturelo.jfrog.io/artifactory"
+
+    publish {
+        contextUrl = "https://amarturelo.jfrog.io/artifactory"
+
+        repository {
+            repoKey = loadArtifactoryPropoerty("artifactory_repoKey") // The Artifactory repository key to publish to
+            username = 'amarturelo' // The publisher user name
+            password = 'Om3g4123*' // The publisher password
+            maven = true
+            mavenCompatible = true
+        }
+        defaults {
+            publishArtifacts = true
+            properties = ['qa.level': 'basic', 'dev.team': 'core']
+            publishPom = true // Publish generated POM files to Artifactory (true by default)
+        }
+    }
+}

@@ -6,6 +6,14 @@ plugins {
     id("kotlin-android")
 }
 
+//apply(from = "distribution.gradle")
+
+/*if (System.getenv("JENKINS_URL") == null || System.getenv("JENKINS_URL") == "") {
+    apply(from = "buildTypes.gradle")
+} else {
+    apply(from = "distribution.gradle")
+}*/
+
 kapt {
     correctErrorTypes = true
 }
