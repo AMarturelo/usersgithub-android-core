@@ -11,12 +11,12 @@ kapt {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = VersionApp.compileSdkVersion
     namespace = "com.amarturelo.usersgithub.core"
 
     defaultConfig {
-        minSdk = 24
-        targetSdk = 33
+        minSdk = VersionApp.minSdkVersion
+        targetSdk = VersionApp.targetSdkVersion
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
