@@ -6,7 +6,7 @@ plugins {
     id("kotlin-android")
 }
 
-//apply(from = "distribution.gradle")
+apply(from = "distribution.gradle")
 
 /*if (System.getenv("JENKINS_URL") == null || System.getenv("JENKINS_URL") == "") {
     apply(from = "buildTypes.gradle")
