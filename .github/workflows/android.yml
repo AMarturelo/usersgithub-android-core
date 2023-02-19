@@ -2,9 +2,7 @@ name: Android CI
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches: [ "**" ]
 
 jobs:
   build:
@@ -22,5 +20,8 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: Publish with Gradle
+      env:
+        IS_CICD: $IS_CICD
+        BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+      run: ./gradlew artifactoryPublish
