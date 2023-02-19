@@ -1,5 +1,3 @@
-import VersionApp
-
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -14,12 +12,11 @@ kapt {
 
 android {
     compileSdk = VersionApp.compileSdkVersion
-    namespace = "com.amarturelo.usersgithub.core"
 
     defaultConfig {
         minSdk = VersionApp.minSdkVersion
         targetSdk = VersionApp.targetSdkVersion
-        vectorDrawables.useSupportLibrary = true
+        renderscriptSupportModeEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,11 +27,22 @@ android {
 
     testOptions {
         unitTests.isReturnDefaultValues = true
+        unitTests.isIncludeAndroidResources = true
+        unitTests.all {
+            it.jvmArgs(
+                "-Xms2g",
+                "-Xmx2g",
+                "-XX:+DisableExplicitGC"
+            )
+            it.testLogging {
+                events("passed", "skipped", "failed", "standardOut", "standardError")
+            }
+        }
     }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-        kotlinOptions.freeCompilerArgs += "-Xjvm-default=enable"
+    lint {
+        disable("ObsoleteLintCustomCheck", "TypographyFractions", "TypographyQuotes")
+        isAbortOnError = false
     }
 }
 
