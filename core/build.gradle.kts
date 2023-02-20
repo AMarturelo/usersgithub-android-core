@@ -77,5 +77,3 @@ dependencies {
         }
     }
 }
-
-apply(from = "../publish-module.gradle")
