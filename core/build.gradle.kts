@@ -61,9 +61,21 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
 
+    //dagger
+    implementation("com.google.dagger:dagger:2.40.5")
+    implementation("com.google.dagger:dagger-android:2.40.5")
+    implementation("com.google.dagger:dagger-android-support:2.40.5")
+    kapt("com.google.dagger:dagger-compiler:2.40.5")
+    kapt("com.google.dagger:dagger-android-processor:2.40.5")
+
+    //Logger
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).configureEach {
         kotlinOptions {
             freeCompilerArgs.plus("-Xjvm-default=all-compatibility")
         }
     }
 }
+
+apply(from = "../publish-module.gradle")
