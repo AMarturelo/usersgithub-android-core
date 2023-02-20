@@ -58,8 +58,18 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+    implementation(ApplicationDependencies.coroutinesCore)
+    implementation(ApplicationDependencies.coroutinesAndroid)
+
+    //dagger
+    implementation(ApplicationDependencies.dagger)
+    implementation(ApplicationDependencies.daggerAndroid)
+    implementation(ApplicationDependencies.daggerSupport)
+    kapt(ApplicationDependencies.daggerCompiler)
+    kapt(ApplicationDependencies.daggerAdroidProcessor)
+
+    //Logger
+    implementation(ApplicationDependencies.timber)
 
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).configureEach {
         kotlinOptions {

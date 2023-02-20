@@ -1,1 +1,0 @@
-/Users/amartur/Projects/usersgithub/usersgithub-android-core/buildSrc/build/classes/kotlin/main/ConfigData.class:/Users/amartur/Projects/usersgithub/usersgithub-android-core/buildSrc/build/classes/kotlin/main/VersionApp.class
