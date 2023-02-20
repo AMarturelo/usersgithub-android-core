@@ -58,18 +58,18 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
+    implementation(ApplicationDependencies.coroutinesCore)
+    implementation(ApplicationDependencies.coroutinesAndroid)
 
     //dagger
-    implementation("com.google.dagger:dagger:2.40.5")
-    implementation("com.google.dagger:dagger-android:2.40.5")
-    implementation("com.google.dagger:dagger-android-support:2.40.5")
-    kapt("com.google.dagger:dagger-compiler:2.40.5")
-    kapt("com.google.dagger:dagger-android-processor:2.40.5")
+    implementation(ApplicationDependencies.dagger)
+    implementation(ApplicationDependencies.daggerAndroid)
+    implementation(ApplicationDependencies.daggerSupport)
+    kapt(ApplicationDependencies.daggerCompiler)
+    kapt(ApplicationDependencies.daggerAdroidProcessor)
 
     //Logger
-    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation(ApplicationDependencies.timber)
 
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).configureEach {
         kotlinOptions {
