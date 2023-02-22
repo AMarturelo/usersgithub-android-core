@@ -73,11 +73,10 @@ project('core') {
 artifactory {
     clientConfig.setIncludeEnvVars(true)
     clientConfig.info.addEnvironmentProperty('test.adding.dynVar',new Date().toString())
-
     contextUrl = artifactory_context_url
     publish {
         repository {
-            repoKey = 'libs-snapshot-local' // The Artifactory repository key to publish to
+            repoKey = libraryVersion.endsWith('SNAPSHOT') ? 'libs-snapshot-local' : 'libs-release-local' // The Artifactory repository key to publish to
             username = "${artifactory_user}" // The publisher user name
             password = "${artifactory_password}" // The publisher password
             // This is an optional section for configuring Ivy publication (when publishIvy = true).
