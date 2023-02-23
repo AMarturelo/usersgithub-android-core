@@ -29,17 +29,9 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
 
-    api("androidx.core:core-ktx:1.7.0")
-    api("androidx.appcompat:appcompat:1.4.1")
-    api("com.google.android.material:material:1.5.0")
-    api("androidx.constraintlayout:constraintlayout:2.1.3")
-
     // Coroutines
     api(ApplicationDependencies.coroutinesCore)
     api(ApplicationDependencies.coroutinesAndroid)
-
-    //Logger
-    api(ApplicationDependencies.timber)
 
     //dagger
     implementation(ApplicationDependencies.dagger)
@@ -47,6 +39,18 @@ dependencies {
     implementation(ApplicationDependencies.daggerSupport)
     kapt(ApplicationDependencies.daggerCompiler)
     kapt(ApplicationDependencies.daggerAdroidProcessor)
+
+    api(ApplicationDependencies.xAppCompat)
+    api(ApplicationDependencies.xSupportMediaCompat)
+    api(ApplicationDependencies.xSupportVectorDrawable)
+
+    testImplementation(UnitTestingDependencies.junit)
+
+    api(ApplicationDependencies.retrofit)
+    api(ApplicationDependencies.retrofitGson)
+    api(ApplicationDependencies.okhttpLoggingInterceptor)
+
+    api(ApplicationDependencies.timber)
 
 
 }
