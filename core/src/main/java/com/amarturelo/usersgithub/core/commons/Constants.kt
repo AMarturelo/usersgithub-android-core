@@ -1,4 +1,4 @@
-package com.amarturelo.usersgithub.core.commons.utils
+package com.amarturelo.usersgithub.core.commons
 
 interface Constants {
     object NetworkStatus {
