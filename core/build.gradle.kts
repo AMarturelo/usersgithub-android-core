@@ -33,16 +33,7 @@ dependencies {
     api(ApplicationDependencies.coroutinesCore)
     api(ApplicationDependencies.coroutinesAndroid)
 
-    //dagger
-    implementation(ApplicationDependencies.dagger)
-    implementation(ApplicationDependencies.daggerAndroid)
-    implementation(ApplicationDependencies.daggerSupport)
-    kapt(ApplicationDependencies.daggerCompiler)
-    kapt(ApplicationDependencies.daggerAdroidProcessor)
-
     api(ApplicationDependencies.xAppCompat)
-    api(ApplicationDependencies.xSupportMediaCompat)
-    api(ApplicationDependencies.xSupportVectorDrawable)
 
     testImplementation(UnitTestingDependencies.junit)
 
@@ -50,7 +41,11 @@ dependencies {
     api(ApplicationDependencies.retrofitGson)
     api(ApplicationDependencies.okhttpLoggingInterceptor)
 
+    // hilt
+    implementation(ApplicationDependencies.hiltAndroid)
+    kapt(ApplicationDependencies.hiltAndroidCompiler)
+
     api(ApplicationDependencies.timber)
-
-
 }
+
+apply(from = "../publish-module.gradle")
