@@ -42,5 +42,5 @@ jobs:
         with:
           arguments: core:publish
         env:
-          GITHUB_USER: ${{ variables.USER }}
+          GITHUB_USER: $USER
           GITHUB_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
