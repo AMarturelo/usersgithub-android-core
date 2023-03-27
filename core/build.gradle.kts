@@ -4,7 +4,11 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
     id("kotlin-android")
+    `maven-publish`
 }
+
+group = ConfigData.groupName
+version = ConfigData.versionName
 
 kapt {
     correctErrorTypes = true
@@ -48,4 +52,24 @@ dependencies {
     api(ApplicationDependencies.timber)
 }
 
-apply(from = "../publish-module.gradle")
+publishing {
+    repositories {
+        maven {
+            name = "GitHub"
+            url = uri("https://maven.pkg.github.com/amarturelo/usersgithub-android-core")
+            credentials {
+                username = (System.getenv("GITHUB_USER") ?: project.properties["GITHUB_USER"]).toString()
+                password = (System.getenv("GITHUB_ACCESS_TOKEN")
+                    ?: project.properties["GITHUB_ACCESS_TOKEN"]).toString()
+            }
+        }
+    }
+    publications {
+        register("core", MavenPublication::class) {
+            groupId = ConfigData.groupName
+            artifactId = ConfigData.artifactId
+            version = ConfigData.versionName
+            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+        }
+    }
+}
